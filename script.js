@@ -1,7 +1,7 @@
 let pxl = document.querySelectorAll(".pixel");
 var container = document.querySelector(".container");
 let coloriseBtn = document.getElementById("clrBtn");
-let greyBtn = document.getElementById("bwBtn");
+let eraseBtn = document.getElementById("eraseBtn");
 let resetBtn = document.getElementById("resetBtn");
 let size = 20;
 
@@ -39,9 +39,9 @@ function rainbow() {
 }
 
 // Changes colour of pixels to grey
-function greyScale() {
+function erase() {
     container.children[i].addEventListener("mouseover", (e) => {
-        e.target.style.cssText = `background-color: grey;`;
+        e.target.style.cssText = `background-color: whitesmoke;`;
     });
 }
 
@@ -52,9 +52,9 @@ coloriseBtn.addEventListener("click", () => {
     }
 });
 
-greyBtn.addEventListener("click", () => {
+eraseBtn.addEventListener("click", () => {
     for (i = 0; i < container.childElementCount; i++) {
-        greyScale();
+        erase();
     }
 });
 

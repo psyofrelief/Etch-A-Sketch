@@ -17,10 +17,21 @@
     padding: 2px;
     align-self: center;
     border: 1px solid black;
-    margin: 12rem auto;
+    margin: 6rem auto;
 }
 .pixel {
     border-radius: 2px;
     color: white;
     background-color: whitesmoke;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+button {
+    align-self: center;
+    padding: 1em 2em;
 }
