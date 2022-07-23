@@ -4,18 +4,23 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 .container {
-    height: 800px;
-    max-width: 800px;
+    height: 960px;
+    max-width: 960px;
     display: grid;
     grid-template-columns: repeat(var(--size), 1fr);
     grid-template-rows: repeat(var(--size), 1fr);
-    gap: 3px;
-    padding: 3px;
+    gap: 2px;
+    padding: 2px;
+    align-self: center;
+    border: 1px solid black;
+    margin: 12rem auto;
 }
 .pixel {
-    background-color: rgb(61, 61, 61);
     border-radius: 2px;
+    color: white;
+    background-color: whitesmoke;
 }
