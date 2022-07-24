@@ -18,6 +18,8 @@
     align-self: center;
     border: 1px solid black;
     margin: 6rem auto;
+    background: rgb(229, 229, 229);
+    border-radius: 4px;
 }
 .pixel {
     border-radius: 2px;
@@ -29,6 +31,8 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding: 3rem;
+    background-color: grey;
 }
 
 button {

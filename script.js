@@ -4,6 +4,9 @@ let coloriseBtn = document.getElementById("clrBtn");
 let eraseBtn = document.getElementById("eraseBtn");
 let resetBtn = document.getElementById("resetBtn");
 let size = 20;
+let mouseDown = false;
+container.onmousedown = () => (mouseDown = true);
+container.onmouseup = () => (mouseDown = false);
 
 // Creates grid of pixels
 function populate(size) {
@@ -29,32 +32,28 @@ function randomColor() {
     return code;
 }
 
-// Changes colour of pixels to colorful
-function rainbow() {
-    container.children[i].addEventListener(
-        "mouseover",
-        (e) =>
-            (e.target.style.cssText = `background-color: ${randomColor()}`)
-    );
-}
-
-// Changes colour of pixels to grey
-function erase() {
+function clrFill(clrChoice) {
     container.children[i].addEventListener("mouseover", (e) => {
-        e.target.style.cssText = `background-color: whitesmoke;`;
+        if (e.type === "mouseover" && !mouseDown) {
+            return;
+        }
+        e.target.style.cssText = `background-color: ${clrChoice}`;
+    });
+    container.children[i].addEventListener("mousedown", (e) => {
+        e.target.style.cssText = `background-color: ${clrChoice}`;
     });
 }
 
 // ==== BUTTONS ==================================================
 coloriseBtn.addEventListener("click", () => {
     for (i = 0; i < container.childElementCount; i++) {
-        rainbow();
+        clrFill(randomColor());
     }
 });
 
 eraseBtn.addEventListener("click", () => {
     for (i = 0; i < container.childElementCount; i++) {
-        erase();
+        clrFill("whitesmoke");
     }
 });
 
