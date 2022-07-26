@@ -1,10 +1,15 @@
-let pxl = document.querySelectorAll(".pixel");
-var container = document.querySelector(".container");
+let pxl = document.querySelectorAll(".pxl");
+var container = document.querySelector(".pxl__container");
 let coloriseBtn = document.getElementById("clrBtn");
 let eraseBtn = document.getElementById("eraseBtn");
 let resetBtn = document.getElementById("resetBtn");
+var clrPicker = document.getElementById("clrPicker");
+let clrPickerBtn = document.getElementById("clrPickerBtn");
+let buttons = document.querySelector(".btn__container");
 let size = 20;
 let mouseDown = false;
+let mouseLeave = false;
+let inputCtnr = document.querySelector("input__container");
 container.onmousedown = () => (mouseDown = true);
 container.onmouseup = () => (mouseDown = false);
 
@@ -14,7 +19,7 @@ function populate(size) {
     container.style.setProperty("--size", size);
     for (let i = 0; i < size * size; i++) {
         const div = document.createElement("div");
-        div.classList.add("pixel");
+        div.classList.add("pxl");
         container.appendChild(div);
     }
 }
@@ -33,6 +38,9 @@ function randomColor() {
 }
 
 function clrFill(clrChoice) {
+    if (mouseLeave) {
+        return;
+    }
     container.children[i].addEventListener("mouseover", (e) => {
         if (e.type === "mouseover" && !mouseDown) {
             return;
@@ -44,7 +52,7 @@ function clrFill(clrChoice) {
     });
 }
 
-// ==== BUTTONS ==================================================
+// ==== BUTTON FUNCTIONS ==================================================
 coloriseBtn.addEventListener("click", () => {
     for (i = 0; i < container.childElementCount; i++) {
         clrFill(randomColor());
@@ -63,3 +71,20 @@ resetBtn.addEventListener("click", () => {
             "background-color: whitesmoke;";
     }
 });
+
+clrPickerBtn.addEventListener("click", (e) => {
+    for (i = 0; i < container.childElementCount; i++) {
+        clrFill(clrPicker.value);
+    }
+});
+
+// ==== BUTTON CLICK EVENTS ===================================================
+
+for (i = 0; i < buttons.childElementCount; i++) {
+    buttons.children[i].addEventListener("mousedown", (e) => {
+        e.target.classList.toggle("active");
+    });
+    buttons.children[i].addEventListener("transitionend", (e) => {
+        e.target.classList.remove("active");
+    });
+}

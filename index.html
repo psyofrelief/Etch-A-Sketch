@@ -12,14 +12,25 @@
         <script src="script.js" defer></script>
     </head>
     <body>
-        <h1>Etch-a-Sketch</h1>
-        <div class="cont">
-            <div class="container"></div>
-        </div>
-        <div class="btn__container">
-            <button id="clrBtn">Colorise</button>
-            <button id="eraseBtn">Erase</button>
-            <button id="resetBtn">Reset</button>
+        <div class="body__container">
+            <h1>Etch-a-Sketch</h1>
+            <div>
+                <div class="pxl__container"></div>
+            </div>
+            <div class="input__container"></div>
+            <div class="btn__container">
+                <button id="clrBtn" class="inactive">Colorise</button>
+                <button id="eraseBtn" class="inactive">Erase</button>
+                <button id="resetBtn" class="inactive">Reset</button>
+                <button id="clrPickerBtn" class="inactive">
+                    Custom<input
+                        type="color"
+                        name="ColorPicker"
+                        id="clrPicker"
+                    />
+                </button>
+            </div>
+            <footer>PsyOfRelief 2022 ©</footer>
         </div>
     </body>
 </html>
