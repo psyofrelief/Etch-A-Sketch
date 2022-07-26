@@ -12,25 +12,26 @@
         <script src="script.js" defer></script>
     </head>
     <body>
+        <div id="resize"><a href=".">Resize</a></div>
         <div class="body__container">
             <h1>Etch-a-Sketch</h1>
             <div>
                 <div class="pxl__container"></div>
             </div>
-            <div class="input__container"></div>
+            <h3>Select Your Color</h3>
             <div class="btn__container">
-                <button id="clrBtn" class="inactive">Colorise</button>
-                <button id="eraseBtn" class="inactive">Erase</button>
-                <button id="resetBtn" class="inactive">Reset</button>
                 <button id="clrPickerBtn" class="inactive">
                     Custom<input
                         type="color"
                         name="ColorPicker"
                         id="clrPicker"
-                    />
-                </button>
+                    /></button
+                ><button id="eraseBtn" class="inactive">Erase</button>
+
+                <button id="clrBtn" class="inactive">Rainbow</button
+                ><button id="resetBtn" class="inactive">Reset</button>
             </div>
-            <footer>PsyOfRelief 2022 ©</footer>
+            <footer class="footer">PsyOfRelief 2022 ©</footer>
         </div>
     </body>
 </html>

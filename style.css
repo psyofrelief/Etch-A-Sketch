@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+
+:root {
+    --clr-accent-100: rgb(229, 229, 229);
+    --clr-accent-300: #eed6d3;
+    --clr-accent-500: #f1c5bf;
+    --clr-dark-700: rgba(0, 0, 0, 0.2);
+    --clr-dark-800: rgba(0, 0, 0, 0.4);
+}
+
 *,
 *::before,
 *::after {
@@ -9,8 +18,14 @@
     user-select: none;
 }
 
-body {
+body,
+.body__container,
+.btn__container,
+#clrPickerBtn {
     display: flex;
+}
+
+body {
     flex-direction: column;
     text-align: center;
     padding: 3rem;
@@ -21,17 +36,18 @@ body {
 }
 
 .body__container {
-    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     height: 100%;
 }
 
 h1 {
-    color: #eed6d3;
+    color: var(--clr-accent-300);
     font-family: "Kalam", cursive;
     font-size: 3rem;
     text-shadow: 0 0 1rem rgba(0, 0, 0, 0.631);
+    max-width: 24rem;
+    align-self: center;
 }
 
 .pxl__container {
@@ -46,83 +62,128 @@ h1 {
     margin: 6rem auto;
     background: rgb(229, 229, 229);
     border-radius: 0.4rem;
-    box-shadow: 0 0 2rem -0.5rem rgba(0, 0, 0, 0.841);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.521);
 }
 
 .pxl {
     border-radius: 2px;
-    color: white;
     background-color: whitesmoke;
-    opacity: 80%;
+    opacity: 85%;
+}
+
+h3 {
+    font-size: 1.6rem;
+    text-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.38);
+}
+
+#szPicker {
+    max-width: 4rem;
+    min-height: 4rem;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .btn__container {
-    display: flex;
-    flex-direction: row-reverse;
     justify-content: center;
     gap: 1rem;
 }
 
-.inactive {
+button {
     align-self: center;
     padding: 1rem 2rem;
     display: block;
-    max-width: fit-content;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid #e8b3b8;
-    border-radius: 0.4rem;
-    color: whitesmoke;
-    font-size: 1.2rem;
-    height: 100%;
-}
-
-.inactive:hover {
-    cursor: pointer;
-}
-.neutral {
-    align-self: center;
-    padding: 1rem 2rem;
-    display: block;
-    max-width: fit-content;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid #e8b3b8;
-    border-radius: 0.4rem;
-    color: whitesmoke;
-    font-size: 1.2rem;
-    height: 100%;
-}
-
-.active {
-    align-self: center;
-    padding: 1rem 2rem;
-    display: block;
-    max-width: fit-content;
-    background-color: rgb(235, 199, 199);
-    border: 1px solid #e8b3b8;
+    border: 2px solid var(--clr-accent-500);
     border-radius: 0.4rem;
     font-size: 1.2rem;
-    height: 100%;
-    transform: scale(1.05);
-    transition-duration: 200ms;
+    height: 4rem;
+}
+button:focus-visible,
+a:focus-visible {
+    border: 5px dashed white;
 }
 
 #clrPickerBtn {
-    display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-input {
+.inactive {
+    background-color: var(--clr-dark-700);
+    color: whitesmoke;
+}
+
+.neutral {
+    background-color: var(--clr-accent-100);
+    color: black;
+    cursor: pointer;
+    color: black;
+    transition-duration: 150ms;
+}
+
+.active {
+    background-color: var(--clr-accent-300);
+    padding: 1rem 2.2rem;
+    transition-duration: 200ms;
+    box-shadow: 0 0 1.3rem rgba(0, 0, 0, 0.672);
+}
+
+#clrPicker {
     background: none;
     border: none;
     max-width: 2rem;
 }
 
-footer {
+.footer {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0.6rem;
-    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.7rem;
+    background-color: var(--clr-dark-800);
+}
+
+/* ==== CLEARS X FROM SIZE INPUT ============================================== */
+
+input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+input[type="search"]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+/* ==== RESIZE ================================================================ */
+#resize {
+    border: 2px dotted var(--clr-accent-100);
+    border-radius: 8px;
+    max-width: fit-content;
+    right: 2.4rem;
+    top: 2.4rem;
+    position: absolute;
+    padding: 1em;
+    font-weight: lighter;
+    background-color: var(--clr-dark-700);
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+#resize:hover {
+    background-color: var(--clr-accent-100);
+    cursor: pointer;
+    transition-duration: 150ms;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.769);
 }

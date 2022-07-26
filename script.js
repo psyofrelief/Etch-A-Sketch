@@ -1,29 +1,51 @@
-let pxl = document.querySelectorAll(".pxl");
 var container = document.querySelector(".pxl__container");
+let pxl = document.querySelectorAll(".pxl");
+let buttonsAll = document.querySelectorAll("button");
+let resizeBtn = document.querySelector("#resizeBtn");
 let coloriseBtn = document.getElementById("clrBtn");
 let eraseBtn = document.getElementById("eraseBtn");
 let resetBtn = document.getElementById("resetBtn");
-var clrPicker = document.getElementById("clrPicker");
+let clrPicker = document.getElementById("clrPicker");
 let clrPickerBtn = document.getElementById("clrPickerBtn");
-let buttons = document.querySelector(".btn__container");
-let size = 20;
+
+// Changes default mouse behavior so user can drag and fill
 let mouseDown = false;
 let mouseLeave = false;
-let inputCtnr = document.querySelector("input__container");
 container.onmousedown = () => (mouseDown = true);
 container.onmouseup = () => (mouseDown = false);
 
 // Creates grid of pixels
 function populate(size) {
-    // Updating the --size CSS variable
-    container.style.setProperty("--size", size);
-    for (let i = 0; i < size * size; i++) {
-        const div = document.createElement("div");
-        div.classList.add("pxl");
-        container.appendChild(div);
+    size = prompt("Enter square root of area size.");
+    if (size < 101 && size > 0 && size !== isNaN) {
+        for (let i = 0; i < size * size; i++) {
+            const div = document.createElement("div");
+            div.classList.add("pxl");
+            div.remove();
+            container.appendChild(div);
+        }
+        // Updating the --size CSS variable
+        container.style.setProperty("--size", size);
+    } else {
+        populateInvalid();
     }
 }
-populate(size);
+// If user enters invalid input
+function populateInvalid(size) {
+    size = prompt("INVALID INPUT\nMust be a number between 1 - 100!");
+    if (size < 101 && size > 0 && size !== isNaN) {
+        for (let i = 0; i < size * size; i++) {
+            const div = document.createElement("div");
+            div.classList.add("pxl");
+            div.remove();
+            container.appendChild(div);
+        }
+        // Updating the --size CSS variable
+        container.style.setProperty("--size", size);
+    }
+}
+
+populate();
 
 // ==== PIXEL FUNCTIONS =======================================================
 // Generates random color
@@ -78,13 +100,19 @@ clrPickerBtn.addEventListener("click", (e) => {
     }
 });
 
-// ==== BUTTON CLICK EVENTS ===================================================
+// ==== BUTTON STYLING EVENTS ===================================================
 
-for (i = 0; i < buttons.childElementCount; i++) {
-    buttons.children[i].addEventListener("mousedown", (e) => {
+buttonsAll.forEach((button) => {
+    button.addEventListener("mouseenter", (e) => {
+        e.target.classList.remove("active");
+        e.target.classList.toggle("neutral");
+    });
+    button.addEventListener("mouseleave", (e) => {
+        e.target.classList.remove("active");
+        e.target.classList.toggle("neutral");
+        e.stopPropagation();
+    });
+    button.addEventListener("mousedown", (e) => {
         e.target.classList.toggle("active");
     });
-    buttons.children[i].addEventListener("transitionend", (e) => {
-        e.target.classList.remove("active");
-    });
-}
+});
